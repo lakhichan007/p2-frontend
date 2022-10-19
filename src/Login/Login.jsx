@@ -59,7 +59,7 @@ const Login = () => {
                 <button type="submit" onClick={oldUser}>Sign In</button>
                 </div>
                 <div>
-                <a href="/signup">sign up</a>
+                <a href="/signUp">sign up</a>
                 </div>
                 </section>
             <section id="bottom-section">
