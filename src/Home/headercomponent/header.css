@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+#header-container{
+/* position: absolute; */
+height:8vh;
+width:85vw;
+/* border:1px solid rgb(50, 165, 42); */
+/* left:10vw; */
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+#header-contact-font{
+
+}
+#header-search-bar{
+ Width:30vw;
+ Height:4.5vh;
+ border-radius:4px;
+ background-color: #F2F2F2;
+ padding: 0vw 1vw;
+ display: flex;
+ align-items: center;
+}
+#header-user-detail>img{
+ height:4vh;
+ width:4vh ;
+ border-radius: 50%;
+ background-color: pink;
+ position: relative;
+ top:2.5vh
+}
+#search-bar{
+    border:none;
+    background-color:#F2F2F2 ;
+    margin-left:2vw;
+}

@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+#home-page-container{
+    height: 99vh;
+    width: 99vw;
+    display: flex;
+}
+.home-btn{
+    position: relative;
+    bottom: 5px;
+    background: #F5F5F5;
+    height:24px;
+    width:100px;
+    margin: 0px 44px;
+    color:blue;
+}
+#btn2{
+    position: relative;
+    left: 900px;
+}

@@ -1,0 +1,40 @@
+#contact-box{
+    height:6vh;
+    width:99%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color:#b3f0ff;
+    border-radius:8px;
+    margin: 5px 0px;
+}
+.content{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+}
+#edit{
+ color: darkgreen;
+
+}
+#delete{
+    color: crimson;
+    
+}
+#contact-edit-btn{
+    background-color:#b3f0ff ;
+    height:20px;
+    width: 20px;
+}
+#contact-delete-btn{
+background-color:#b3f0ff;
+height: 20px;
+width: 20px;
+position: relative;
+left:20px
+}
+#contact-box:hover{
+    background-color: darkcyan;
+}
