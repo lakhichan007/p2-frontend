@@ -10,7 +10,7 @@ const Popup = (props) => {
     const [contact, setcontact] = useState([])
     useEffect(() => {
         let mytoken=window.localStorage.getItem("token")
-        axios.post(`https://contct-manager-backend6.herokuapp.com/addContact`, {contact,mytoken})
+        axios.post(`http://localhost:8000/addContact`, {contact,mytoken})
             .then((res) => {
 
             })

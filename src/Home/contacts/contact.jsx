@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
 import "./contacts.css"
 import axios from "axios"
-const Contacts = () => {
+import Pagination from "./pagination"
+const Contacts = ({setcheckbox}) => {
     const [contacts, setcontacts] = useState([])
-    // let contacts= []
+    const [currentpage,setcurrentpage]=useState(1)
+    const [contactspergage,setcontactperpage]=useState(10)
     let mytoken = window.localStorage.getItem("token")
     useEffect(() => {
 
-        axios.post("https://contct-manager-backend6.herokuapp.com/show_contacts", { mytoken })
+        axios.post("http://localhost:8000/show_contacts", { mytoken })
             .then((res) => {
                 const data = res.data.data
                 setcontacts(data)
@@ -16,21 +18,37 @@ const Contacts = () => {
 
     }, [contacts])
 
+    const contactsSize=contacts.length
+
+    // delete the item by deleteicon....
     const todelete=(e,id)=>{
-        e.preventDefault();
-     axios.delete(`https://contct-manager-backend6.herokuapp.com/delete/${id}`)
+     axios.delete(`http://localhost:8000/delete/${id}`)
         .then((res)=>{
 
         })
         .catch(err=>{console.log(err)})
     }
+    const selectcheckbox=(myid)=>{
+
+            setcheckbox((previous)=>[... previous,myid])
+        
+    
+    }
+    
+    const indexOflastcontact= currentpage*contactspergage
+    const indexOffirstcontact =indexOflastcontact-contactspergage
+    const currentcontacts=contacts.slice(indexOffirstcontact,indexOflastcontact)
+    const paginate=(page)=>{
+        setcurrentpage(page)
+    }
+    //  console.log(checkbox)
 
     return (
         <>
-            {contacts.map((contact) => {
+            {currentcontacts.map((contact) => {
                 return (
                     <div id="contact-box" key={contact._id}>
-                        <div><input id="check-box" type="checkbox" /></div>
+                        <div><input id="check-box"  onChange={()=>selectcheckbox(contact._id)} type="checkbox" /></div>
                         <div className="content">{contact.name}</div>
                         <div className="content">{contact.designation}</div>
                         <div className="content">{contact.company}</div>
@@ -43,8 +61,10 @@ const Contacts = () => {
                             <button id="contact-delete-btn" onClick={(e) => todelete(e,contact._id)}><i id="delete" class="fa fa-trash-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
+                    
                 )
             })}
+            <Pagination contactspergage={contactspergage} totalcontacts={contactsSize} paginate={paginate}/>
         </>
     )
 }
