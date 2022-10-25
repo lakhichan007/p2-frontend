@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react"
 import "./contacts.css"
 import axios from "axios"
 import Pagination from "./pagination"
-const Contacts = ({setcheckbox}) => {
+const Contacts = ({setcheckbox,querry}) => {
     const [contacts, setcontacts] = useState([])
     const [currentpage,setcurrentpage]=useState(1)
     const [contactspergage,setcontactperpage]=useState(10)
     let mytoken = window.localStorage.getItem("token")
     useEffect(() => {
 
-        axios.post("http://localhost:8000/show_contacts", { mytoken })
+        axios.post("https://contct-manager-backend6.herokuapp.com/show_contacts", { mytoken })
             .then((res) => {
                 const data = res.data.data
                 setcontacts(data)
@@ -19,10 +19,10 @@ const Contacts = ({setcheckbox}) => {
     }, [contacts])
 
     const contactsSize=contacts.length
-
+    
     // delete the item by deleteicon....
     const todelete=(e,id)=>{
-     axios.delete(`http://localhost:8000/delete/${id}`)
+     axios.delete(`https://contct-manager-backend6.herokuapp.com/delete/${id}`)
         .then((res)=>{
 
         })
@@ -37,12 +37,22 @@ const Contacts = ({setcheckbox}) => {
     
     const indexOflastcontact= currentpage*contactspergage
     const indexOffirstcontact =indexOflastcontact-contactspergage
-    const currentcontacts=contacts.slice(indexOffirstcontact,indexOflastcontact)
+    let currentcontacts=contacts.slice(indexOffirstcontact,indexOflastcontact)
     const paginate=(page)=>{
         setcurrentpage(page)
     }
-    //  console.log(checkbox)
-
+    //search by querry........
+    const myContacts=contacts.filter((contact)=>{
+        return contact.email.includes(querry)
+    })
+    // console.log(querry)
+    // console.log(myContacts)
+    if(querry==""){
+        currentcontacts=currentcontacts
+    }
+    else{
+        currentcontacts=myContacts
+    }
     return (
         <>
             {currentcontacts.map((contact) => {

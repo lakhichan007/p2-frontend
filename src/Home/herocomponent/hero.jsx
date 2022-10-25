@@ -4,14 +4,14 @@ import "./hero.css"
 import Popup from "../popupcomponent/popup";
 import axios from "axios";
 import Contacts from "../contacts/contact";
-const Hero = () => {
+const Hero = ({querry}) => {
     const [popup, setpopup] = useState(false)
     const [checkbox,setcheckbox]=useState([])
 
     //deletechecked items.....
     const deletechecked=()=>{
         console.log(checkbox)
-        axios.post("http://localhost:8000/deletemany",checkbox)
+        axios.post("https://contct-manager-backend6.herokuapp.com/deletemany",checkbox)
         .then((res)=>{
 
         })
@@ -68,7 +68,7 @@ const Hero = () => {
 
                     </section>
                     <section>
-                        <Contacts setcheckbox={setcheckbox} />
+                        <Contacts setcheckbox={setcheckbox} querry={querry} />
 
                     </section>
                 </div>

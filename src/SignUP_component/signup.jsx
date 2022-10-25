@@ -11,7 +11,7 @@ const SignUp = () => {
         if (user.userEmail && user.password && user.confirm_password) {
             if (user.password === user.confirm_password) {
 
-                axios.post("http://localhost:8000/signUp", user)
+                axios.post("https://contct-manager-backend6.herokuapp.com/signUp", user)
                     .then((res) => {
                         alert(res.data.message)
                     })
